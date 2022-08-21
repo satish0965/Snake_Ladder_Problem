@@ -8,39 +8,52 @@ namespace SnakeAndLadderProblems
 {
     public class SnakeAndLadder
     {
+        private int PlayerPosition;
         public const int No_Play = 0;
         public const int Ladder = 1;
         public const int Snake = 2;
-        private int PlayerPosition;
+        public const int Winning = 100;
+        int StartPoint = 0;
         public void StartGame()
         {
             Console.WriteLine(" Game Started ");
-            Console.WriteLine(" Player Position: {0} ", PlayerPosition);
+            Console.WriteLine(" PlayerPosition :" + PlayerPosition);
             Random random = new Random();
-            int DieRolled = random.Next(1, 7);
-            Console.WriteLine(" Dice Rolled : {0} ", DieRolled);
-            PlayerPosition = PlayerPosition + DieRolled;
-            Console.WriteLine(" Player Position: {0} ", PlayerPosition);
-            int Option = random.Next(0, 3);
-            Console.WriteLine(" Dice Value : " + Option);
-            switch (Option)
-            {
-                case No_Play:
-                    Console.WriteLine(" No Play");
-                    break;
-                case Ladder:
-                    PlayerPosition += DieRolled;
-                    Console.WriteLine(" Got Ladder : " + PlayerPosition);
-                    break;
-                case Snake:
-                    PlayerPosition -= DieRolled;
-                    Console.WriteLine(" Snake Attack : " + PlayerPosition);
-                    break;
-                default:
-                    Console.WriteLine(" Invalid Option");
-                    break;
-            }
 
+            while (StartPoint < Winning)
+            {
+                int DieRolled = random.Next(1, 7);
+                int Option = random.Next(0, 3);
+                switch (Option)
+                {
+                    case No_Play:
+                        Console.WriteLine(" No Play");
+                        break;
+                    case Ladder:
+                        StartPoint += DieRolled;
+                        Console.WriteLine(" Dice Rolls Number : +{0} ", DieRolled);
+                        Console.WriteLine(" Got Ladder : " + StartPoint);
+                        Console.WriteLine(" PlayerPosition : " + StartPoint);
+                        break;
+                    case Snake:
+                        StartPoint -= DieRolled;
+                        Console.WriteLine(" Dice Rolls Number : -{0} ", DieRolled);
+                        Console.WriteLine(" Snake Attack : " + StartPoint);
+
+                        if (StartPoint < 0)
+                        {
+                            StartPoint = 0;
+
+                        }
+                        Console.WriteLine(" PlayerPosition : " + StartPoint);
+                        break;
+                }
+                if (StartPoint >= Winning)
+                {
+                    Console.WriteLine("Playe won");
+                    break;
+                }
+            }
         }
     }
 }
