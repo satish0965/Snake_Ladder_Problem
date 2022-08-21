@@ -14,6 +14,7 @@ namespace SnakeAndLadderProblems
         public const int Snake = 2;
         public const int Winning = 100;
         int StartPoint = 0;
+        int Count = 0;
         public void StartGame()
         {
             Console.WriteLine(" Game Started ");
@@ -22,6 +23,7 @@ namespace SnakeAndLadderProblems
 
             while (StartPoint < Winning)
             {
+                Count++;
                 int DieRolled = random.Next(1, 7);
                 int Option = random.Next(0, 3);
                 switch (Option)
@@ -54,7 +56,9 @@ namespace SnakeAndLadderProblems
                 }
                 if (StartPoint == Winning)
                 {
-                    Console.WriteLine("Playe won");
+                    Console.WriteLine(" NO of times dice rolled : {0} ", +Count);
+                    Console.WriteLine(" Congratulations Player won");
+                    Console.WriteLine("****GAME END****");
                     break;
                 }
             }
